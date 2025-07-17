@@ -1,8 +1,12 @@
-try:
-    with open('food_list.txt', 'r+') as file:
-        content = file.read()
-        print(content)
-        file.close()
+meal = "\nstarter\nmain course\ndessert\n"
 
-except FileNotFoundError:
-    print("The file 'food_list.txt' was not found.")
+with open('order.txt', 'a+') as f:
+    f.seek(0)
+    content = f.read()
+    if meal not in content:
+        f.write(meal)
+        print("3-course meal added to order.txt")
+    else:
+        print("Meal already in order.txt — nothing added.")
+
+

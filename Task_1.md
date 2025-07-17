@@ -73,16 +73,18 @@ except FileNotFoundError:
 
 ---
 
-### 7. How do you write to a file from Python?
-#### 7.1 Make a program that writes up a 3 course meal order to a file called "order.txt"
-#### 7.2 OPTIONAL BONUS Can make the program (script) idempotent?
+### 7.1 Make a program that writes up a 3 course meal order to a file called "order.txt"
+### 7.2 OPTIONAL BONUS Can make the program (script) idempotent?
+- Idempotent is an object that can be used multiple times throughout the project, however, its return value will not change.
 ````
-file = open('my_file.txt', 'w')
+meal = "\nstarter\nmain course\ndessert\n"
 
-file.write('Hello, world!')    
-
-file.close()                     
- 
-with open('my_file.txt', 'w') as file:
-file.write('Hello again!')
+with open('order.txt', 'a+') as f:
+    f.seek(0)
+    content = f.read()
+    if meal not in content:
+        f.write(meal)
+        print("3-course meal added to order.txt")
+    else:
+        print("Meal already in order.txt — nothing added.")
 ````
